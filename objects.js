@@ -85,3 +85,50 @@ var Car = function(){
 car1 = Car(); 
 car2 = Car(); 
 car1.toggleEngine();
+
+
+/** Object Methods!! */
+
+/* The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object.
+ It will return the target object. */
+var o1 = { a: 1 };
+var o2 = { b: 2 };
+var o3 = { c: 3 };
+
+var obj = Object.assign(o1, o2, o3);
+console.log(obj); // { a: 1, b: 2, c: 3 }
+console.log(o1);  // { a: 1, b: 2, c: 3 }
+
+/*The Object.defineProperties() method defines new or modifies existing properties directly on an object, returning the object.*/
+var obj = {};
+Object.defineProperties(obj, {
+  'property1': {
+    value: true,
+    writable: true
+  },
+  'property2': {
+    value: 'Hello',
+    writable: false
+  }
+  // etc. etc.
+});
+
+/*The Object.entries() method returns an array of a given object's own enumerable property [key, value] pairs, */
+
+
+
+/* deep copies */
+
+
+
+
+/*** Traversing javascript objects */
+
+var myObject = { 'a': 1, 'b': 2, 'c': 3 }
+
+Object.keys(myObject).map(function(key, index) {
+   myObject[key] *= 2;
+});
+
+console.log(myObject);
+// => { 'a': 2, 'b': 4, 'c': 6 }
