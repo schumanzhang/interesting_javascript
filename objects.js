@@ -89,6 +89,11 @@ car1.toggleEngine();
 
 /** Object Methods!! */
 
+/* The Object.create() method creates a new object with the specified prototype object and properties. */
+// subclass extends superclass
+Rectangle.prototype = Object.create(Shape.prototype);
+Rectangle.prototype.constructor = Rectangle;
+
 /* The Object.assign() method is used to copy the values of all enumerable own properties from one or more source objects to a target object.
  It will return the target object. */
 var o1 = { a: 1 };
@@ -114,13 +119,44 @@ Object.defineProperties(obj, {
 });
 
 /*The Object.entries() method returns an array of a given object's own enumerable property [key, value] pairs, */
+var obj = { foo: 'bar', baz: 42 };
+console.log(Object.entries(obj)); // [ ['foo', 'bar'], ['baz', 42] ]
 
+/*The Object.is() method determines whether two values are the same value. */
+Object.is('foo', 'foo');     // true
+Object.is(window, window);   // true
 
+Object.is('foo', 'bar');     // false
+Object.is([], []);           // false
+
+/*The isPrototypeOf() method checks if an object exists in another object's prototype chain. */
+function Foo() {}
+function Bar() {}
+function Baz() {}
+
+Bar.prototype = Object.create(Foo.prototype);
+Baz.prototype = Object.create(Bar.prototype);
+
+var baz = new Baz();
+
+console.log(Baz.prototype.isPrototypeOf(baz)); // true
+console.log(Bar.prototype.isPrototypeOf(baz)); // true
+console.log(Foo.prototype.isPrototypeOf(baz)); // true
+console.log(Object.prototype.isPrototypeOf(baz)); // true
+
+/* The watch() method watches for a property to be assigned a value and runs a function when that occurs. */
+var o = { p: 1 };
+
+o.watch('p', function (id, oldval, newval) {
+  console.log('o.' + id + ' changed from ' + oldval + ' to ' + newval);
+  return newval;
+});
+
+o.unwatch('p');
 
 /* deep copies */
-
-
-
+let a = { b: {c: 4} , d: { e: {f: 1} } };
+let h = JSON.parse(JSON.stringify(a));
 
 /*** Traversing javascript objects */
 
